@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1,2"
+        tools:ignore="MissingPrefix"
+        android:background="#FFFFFF">
+
+        <LinearLayout
+            android:background="#097054"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/nova_receita"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <TextView
+            android:text="@string/nome_da_receita"
+            android:layout_marginTop="20dp"
+            />
+        <EditText
+            android:id="@+id/nomeReceita"
+            android:inputType="text"
+            />
+        <TextView android:text="@string/tipo_de_receita"/>
+        <RadioGroup
+            android:id="@+id/tipoReceita"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/tipoReceitaVariavel"
+                android:checked="true"
+                android:text="@string/receita_variavel"/>
+            <RadioButton
+                android:id="@+id/tipoReceitaSalario"
+                android:layout_marginLeft="30dp"
+                android:text="@string/salario_fixo"/>
+        </RadioGroup>
+        <TableRow>
+            <TextView
+                android:layout_gravity="center"
+                android:text="@string/data_de_recebimento_deste_mes"/>
+        </TableRow>
+        <TableRow >
+            <Button
+                android:id="@+id/dataReceb"
+                android:onClick="selecionarData"
+                android:text="@string/selecione_a_data"
+                android:background="#FFFFFF"/>
+        </TableRow>
+        <TextView android:text="@string/valor_liquido_da_receita"/>
+        <EditText
+            android:id="@+id/valorRec"
+            android:inputType="numberDecimal"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="salvarReceita"
+            android:text="@string/salvar"
+            android:background="#2baf2b"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            />
+    </TableLayout>
+
+</ScrollView>

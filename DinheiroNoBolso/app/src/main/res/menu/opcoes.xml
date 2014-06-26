@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="williamsilva.dinheirnonobolso.ListarDespesaActivity" >
+
+
+    <item android:id="@+id/alterar"
+        android:title="@string/alterar"
+         />
+    <item android:id="@+id/excluir"
+        android:title="@string/excluir"
+        />
+    <item android:id="@+id/detalhes"
+        android:title="Detalhes"
+        />
+</menu>

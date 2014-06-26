@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1,2"
+        tools:ignore="MissingPrefix"
+        android:background="#FFFFFF">
+
+        <LinearLayout
+            android:background="#e51c23"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/nova_despesa"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <TableRow>
+        <TextView
+            android:text="@string/nome_da_despesa"
+            android:layout_marginTop="20dp"
+            />
+        </TableRow>
+
+        <TableRow>
+        <EditText
+            android:id="@+id/nomeDespesa"
+            android:inputType="text"
+            />
+        </TableRow>
+
+        <TableRow>
+        <TextView android:text="@string/tipo_de_despesa"/>
+        </TableRow>
+        <TableRow>
+
+        <RadioGroup
+            android:id="@+id/tipoDespesa"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/tipoDespesaVariavel"
+                android:checked="true"
+                android:text="@string/despesa_variavel"/>
+            <RadioButton
+                android:id="@+id/tipoDespesaFixa"
+                android:layout_marginLeft="30dp"
+                android:text="@string/despesa_fixa"/>
+        </RadioGroup>
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:layout_gravity="center"
+                android:text="@string/data_de_vencimento"/>
+        </TableRow>
+
+        <TableRow >
+            <Button
+                android:id="@+id/dataVenc"
+                android:onClick="selecionarData"
+                android:text="@string/selecione_a_data"
+                android:background="#FFFFFF"/>
+        </TableRow>
+
+        <TableRow>
+        <TextView android:text="@string/valor_da_despesa"/>
+        </TableRow>
+
+        <TableRow>
+        <EditText
+            android:id="@+id/valorDesp"
+            android:inputType="numberDecimal"
+            />
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="@string/statusDespesa"/>
+        </TableRow>
+
+        <TableRow>
+            <RadioGroup
+                android:id="@+id/statusDespesa"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/statusPago"
+                    android:text="@string/despesaPaga"/>
+                <RadioButton
+                    android:id="@+id/statusNaoPago"
+                    android:checked="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/despesaNaoPaga"/>
+            </RadioGroup>
+        </TableRow>
+
+        <TableRow>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="salvarDespesa"
+            android:text="@string/salvar"
+            android:background="#2baf2b"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            />
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>

@@ -45,5 +45,6 @@
     <string name="minhas_despesas">Minhas Despesas</string>
     <string name="excluir">Excluir</string>
     <string name="alterar">Alterar</string>
+    <string name="detalhes">Detalhes</string>
 
 </resources>

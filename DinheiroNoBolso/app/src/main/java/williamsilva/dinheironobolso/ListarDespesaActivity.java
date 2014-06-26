@@ -1,5 +1,6 @@
 package williamsilva.dinheironobolso;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ import static android.widget.AdapterView.OnItemClickListener;
 public class ListarDespesaActivity extends ActionBarActivity {
 
     private ListView lista;
+    private Despesa  despesa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class ListarDespesaActivity extends ActionBarActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //escreva o codigo para click longo aqui:
+                despesa = (Despesa) parent.getItemAtPosition(position);
 
                 return false;
             }
@@ -74,6 +78,11 @@ public class ListarDespesaActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
+        carregarListaDespesas();
+    }
+
+    private void carregarListaDespesas() {
+
         Despesa despesa = new Despesa(this);
         List<Despesa> despesas = despesa.getLista();
         int layout = android.R.layout.simple_list_item_1;
@@ -86,5 +95,29 @@ public class ListarDespesaActivity extends ActionBarActivity {
 
         getMenuInflater().inflate(R.menu.opcoes,menu);
         super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        switch (id)
+        {
+            case R.id.OPexcluir:
+                excluir();
+                break;
+            case R.id.OPalterar:
+                Intent i = new Intent(ListarDespesaActivity.this,AlterarDespesaActivity.class);
+                i.putExtra("DespesaSelecionada",5159159);
+                startActivity(i);
+                break;
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
+    private void excluir() {
+        despesa.excluir(despesa);
+        carregarListaDespesas();
     }
 }

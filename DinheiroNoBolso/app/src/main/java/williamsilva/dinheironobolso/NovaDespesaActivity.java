@@ -30,7 +30,7 @@ public class NovaDespesaActivity extends ActionBarActivity {
         setContentView(R.layout.activity_nova_despesa);
 
         getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         // tratando o campo dataVenc
         Calendar calendario = Calendar.getInstance();

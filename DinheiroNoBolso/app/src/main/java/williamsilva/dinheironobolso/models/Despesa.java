@@ -3,12 +3,15 @@ package williamsilva.dinheironobolso.models;
 import android.content.ContentValues;
 import android.content.Context;
 
+import java.io.Serializable;
+
 import williamsilva.dinheironobolso.DAO.DespesaDAO;
 
 /**
  * Created by William on 24/06/2014.
  */
-public class Despesa extends DespesaDAO {
+public class Despesa extends DespesaDAO implements Serializable {
+
     private String nomeDesp;
     private String tipoDesp;
     private String dataVenc;
@@ -73,7 +76,7 @@ public class Despesa extends DespesaDAO {
 
     public String toString()
     {
-        return this.getNomeDesp();
+        return this.getNomeDesp() + "     R$: "+getValorDesp();
     }
 
     public Boolean novaDespesa(Despesa despesa) {

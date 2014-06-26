@@ -87,6 +87,24 @@ public class DespesaDAO {
         return despesas;
     }
 
+    public void excluir(Despesa despesa){
+
+        String argumentos[] = {despesa.getNomeDesp()};
+        try {
+            db.delete("DBDESPESAS", "DBDESPESANOME=?", argumentos);
+            Log.i("Deletando uma Despesa","DELETADO COM SUCESSO");
+        }
+        catch (Exception e)
+        {
+            Log.i("Erro ao deletar despesa",e.getMessage());
+        }
+        finally {
+            fechar();
+        }
+
+
+    }
+
     public void fechar() {
         // fecha o banco de dados
         if (db != null) {

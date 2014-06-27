@@ -87,11 +87,16 @@ public class NovaReceitaActivity extends ActionBarActivity {
 
     public void salvarReceita(View view)
     {
-        teste("Testando o botão");
+        /*
+        ReceitaHelper helper = new ReceitaHelper(this);
+        Receita receita = helper.getReceita();
+
+        if(receita.novaReceita(receita,this) != true)
+            return;
+
+        Toast.makeText(this,"A Receita " + receita.getNomeRec() + " foi salva com Sucesso!",Toast.LENGTH_LONG).show();
+        finish();
+     */
     }
 
-    private void teste (String msg)
-    {
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show ();
-    }
 }

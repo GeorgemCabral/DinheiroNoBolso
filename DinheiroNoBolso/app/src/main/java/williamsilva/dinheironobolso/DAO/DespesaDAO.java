@@ -17,13 +17,13 @@ import williamsilva.dinheironobolso.models.Despesa;
 public class DespesaDAO {
 
     private static final String SCRIPT_DATABASE_DELETE = "DROP TABLE IF EXISTS DBDESPESAS";
-    private static String[] CREATE_DATA_BASE = new String[]{"CREATE TABLE `DBDESPESAS` (\n" +
-            "\t`DBDESPESAID`\tINTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
-            "\t`DBDESPESANOME`\tTEXT NOT NULL,\n" +
-            "\t`DBDESPESATIPO`\tTEXT NOT NULL,\n" +
-            "\t`DBDESPESAVALOR`\tREAL NOT NULL,\n" +
-            "\t`DBDESPESADATAVENC`\tTEXT NOT NULL,\n" +
-            "\t`DBDESPESASTATUS`\tTEXT\n" +
+    private static String[] CREATE_DATA_BASE = new String[]{"CREATE TABLE `DBDESPESAS` (" +
+            " `DBDESPESAID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
+            " `DBDESPESANOME` TEXT NOT NULL, " +
+            " `DBDESPESATIPO` INTEGER NOT NULL, " +
+            " `DBDESPESAVALOR` REAL NOT NULL, " +
+            " `DBDESPESADATAVENC` TEXT NOT NULL, " +
+            " `DBDESPESASTATUS` INTEGER NOT NULL " +
             ");"};
     private static String NOME_BANCO = "DINHEIRONOBOLSODB";
     private static final int VERSAO_BANCO = 1;
@@ -61,17 +61,17 @@ public class DespesaDAO {
 
     public List<Despesa> getLista() {
 
-        String[] colunas = {"DBDESPESANOME", "DBDESPESATIPO", "DBDESPESAVALOR", "DBDESPESADATAVENC", "DBDESPESASTATUS"};
+        String[] colunas = {"DBDESPESANOME", "DBDESPESATIPO", "DBDESPESAVALOR", "DBDESPESADATAVENC", "DBDESPESASTATUS","DBDESPESAID"};
         ArrayList<Despesa> despesas = new ArrayList<Despesa>();
 
          try{
 
             Cursor cursor = db.query("DBDESPESAS", colunas, null, null, null, null, null);
-
             while (cursor.moveToNext()) {
 
-                Despesa despesa = new Despesa(cursor.getString(0), cursor.getString(1), cursor.getString(3),
-                        Float.parseFloat(cursor.getString(2)), cursor.getString(4), contexto);
+                Despesa despesa = new Despesa(cursor.getString(0), Integer.parseInt(cursor.getString(1)), cursor.getString(3),
+                        Float.parseFloat(cursor.getString(2)), Integer.parseInt(cursor.getString(4)), contexto);
+                despesa.setId(Integer.parseInt(cursor.getString(5)));
                 despesas.add(despesa);
             }
         }
@@ -89,9 +89,9 @@ public class DespesaDAO {
 
     public void excluir(Despesa despesa){
 
-        String argumentos[] = {despesa.getNomeDesp()};
+        String argumentos[] = {despesa.getId().toString()};
         try {
-            db.delete("DBDESPESAS", "DBDESPESANOME=?", argumentos);
+            db.delete("DBDESPESAS", "DBDESPESAID=?", argumentos);
             Log.i("Deletando uma Despesa","DELETADO COM SUCESSO");
         }
         catch (Exception e)
@@ -105,6 +105,30 @@ public class DespesaDAO {
 
     }
 
+    public Despesa getDespesaDAO(Integer id)
+    {
+       String[] colunas = {"DBDESPESANOME", "DBDESPESATIPO", "DBDESPESAVALOR", "DBDESPESADATAVENC", "DBDESPESASTATUS","DBDESPESAID"};
+       String[] desp = {id.toString()};
+       Despesa despesa = null;
+
+        try {
+
+            Cursor cursor = db.query("DBDESPESAS", colunas,"DBDESPESAID=?", desp, null, null, null);
+             cursor.moveToNext();
+            despesa = new Despesa(cursor.getString(0), Integer.parseInt(cursor.getString(1)), cursor.getString(3),
+                    Float.parseFloat(cursor.getString(2)), Integer.parseInt(cursor.getString(4)), contexto);
+
+        }catch (Exception e)
+        {
+            Log.i("Erro buscar despesas", e.getMessage());
+        }
+        finally {
+            fechar();
+        }
+
+        return despesa;
+    }
+
     public void fechar() {
         // fecha o banco de dados
         if (db != null) {
@@ -112,4 +136,27 @@ public class DespesaDAO {
         }
     }
 
+    public Boolean alterarDespesa(ContentValues dados,Integer id) {
+
+        int count;
+
+        try {
+            count = db.update(TABLE_DESPESA, dados,"DBDESPESAID=?",new String[]{id.toString()});
+            Log.i("Despesa Alterada",dados.get("DBDESPESANOME") + " " + dados.get("DBDESPESATIPO") + " " +
+                    dados.get("DBDESPESAVALOR") + " " + dados.get("DBDESPESADATAVENC") + " "+ dados.get("DBDESPESASTATUS"));
+        }
+        catch (Exception e)
+        {
+            Log.i("Erro Alterar de Despesa",e.getMessage());
+            return false;
+        }
+        finally {
+            fechar();
+        }
+
+        if(count > 0)
+            return true;
+        else
+            return false;
+    }
 }

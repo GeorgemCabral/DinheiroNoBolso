@@ -1,21 +1,22 @@
 package williamsilva.dinheironobolso;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.Calendar;
 
+import williamsilva.dinheironobolso.helpers.DespesaHelper;
 import williamsilva.dinheironobolso.models.Despesa;
 
 /**
@@ -25,6 +26,7 @@ public class AlterarDespesaActivity extends Activity {
 
     private int ano, mes, dia;
     private Button dataDesp;
+    private  Despesa despesa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +54,8 @@ public class AlterarDespesaActivity extends Activity {
         // fim do tratamento
 
          Intent i = getIntent();
-         Object despesa =  i.getSerializableExtra("DespesaSelecionada");
+         despesa = (Despesa)  i.getSerializableExtra("DespesaSelecionada");
 
-        Toast.makeText(this,despesa.toString(),Toast.LENGTH_LONG).show();
     }
 
     public void selecionarData(View view) {
@@ -82,4 +83,62 @@ public class AlterarDespesaActivity extends Activity {
 
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DespesaHelper helper = new DespesaHelper(this);
+        helper.setDespesa(despesa);
+    }
+
+    public void salvarDespesa(View view) {
+
+        AlertDialog alerta;
+        //Cria o gerador do AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //define o titulo
+        builder.setTitle("Dinheiro no Bolso");
+        //define a mensagem
+        builder.setMessage("Deseja salvar a alteração ?");
+        //define um botão como positivo
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+
+                //escreva aqui
+                DespesaHelper helper = new DespesaHelper(AlterarDespesaActivity.this);
+                Despesa despesa = null;
+                despesa = helper.getDespesa(AlterarDespesaActivity.this);
+
+                if(despesa == null)
+                {
+                    Toast.makeText(AlterarDespesaActivity.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                }
+                else if(despesa != null)
+                {
+                    alterar(despesa);
+                }
+            }
+        });
+        //define um botão como negativo.
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+                //escreva aqui
+                finish();
+            }
+        });
+        //cria o AlertDialog
+        alerta = builder.create();
+        alerta.show();
+
+    }
+
+    private void alterar(Despesa despesa) {
+
+
+        // Toast.makeText(NovaDespesaActivity.this, "Salvo com sucesso!", Toast.LENGTH_LONG).show();
+        if(despesa.alteraDespesa(despesa, this) != true)
+            return;
+        Toast.makeText(this,"A Despesa " + despesa.getNomeDesp() + " foi alterada com Sucesso!",Toast.LENGTH_LONG).show();
+        finish();
+    }
 }

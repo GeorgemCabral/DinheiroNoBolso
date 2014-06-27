@@ -4,13 +4,13 @@
     tools:context="williamsilva.dinheironobolso.ListarDespesaActivity" >
 
 
-    <item android:id="@+id/OPalterar"
+    <!--<item android:id="@+id/OPalterar"
         android:title="@string/alterar"
-         />
+         />-->
     <item android:id="@+id/OPexcluir"
         android:title="@string/excluir"
         />
-    <item android:id="@+id/OPdetalhes"
+   <!-- <item android:id="@+id/OPdetalhes"
         android:title="@string/detalhes"
-        />
+        /> -->
 </menu>

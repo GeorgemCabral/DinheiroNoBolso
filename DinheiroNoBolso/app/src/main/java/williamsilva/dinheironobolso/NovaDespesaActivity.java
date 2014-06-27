@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-import williamsilva.dinheironobolso.helpers.NovaDespesaHelper;
+import williamsilva.dinheironobolso.helpers.DespesaHelper;
 import williamsilva.dinheironobolso.models.Despesa;
 
 public class NovaDespesaActivity extends ActionBarActivity {
@@ -102,9 +102,9 @@ public class NovaDespesaActivity extends ActionBarActivity {
             public void onClick(DialogInterface arg0, int arg1) {
 
                 //escreva aqui
-                NovaDespesaHelper helper = new NovaDespesaHelper(NovaDespesaActivity.this);
+                DespesaHelper helper = new DespesaHelper(NovaDespesaActivity.this);
                 Despesa despesa = null;
-                despesa = helper.retornarDespesa(NovaDespesaActivity.this);
+                despesa = helper.getDespesa(NovaDespesaActivity.this);
 
                 if(despesa == null)
                 {
@@ -133,20 +133,12 @@ public class NovaDespesaActivity extends ActionBarActivity {
 
 
        // Toast.makeText(NovaDespesaActivity.this, "Salvo com sucesso!", Toast.LENGTH_LONG).show();
-        if(despesa.novaDespesa(despesa) != true)
+        if(despesa.novaDespesa(despesa,this) != true)
             return;
 
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setTitle("Dinheiro no Bolso");
-        alertDialog.setMessage("Despesa " + despesa.getNomeDesp() + " foi salva com Sucesso!");
-        alertDialog.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        alertDialog.show();
+        Toast.makeText(this,"A Despesa " + despesa.getNomeDesp() + " foi salva com Sucesso!",Toast.LENGTH_LONG).show();
+        finish();
 
     }
 }

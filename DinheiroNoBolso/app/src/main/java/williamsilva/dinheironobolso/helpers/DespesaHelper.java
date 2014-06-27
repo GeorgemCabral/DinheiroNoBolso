@@ -4,8 +4,10 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import williamsilva.dinheironobolso.AlterarDespesaActivity;
 import williamsilva.dinheironobolso.NovaDespesaActivity;
 import williamsilva.dinheironobolso.R;
 import williamsilva.dinheironobolso.models.Despesa;
@@ -14,7 +16,7 @@ import williamsilva.dinheironobolso.models.Despesa;
  * Created by William on 24/06/2014.
  */
 
-public class NovaDespesaHelper {
+public class DespesaHelper {
 
     private EditText campoNomeDesp;
     private EditText campoValorDesp;
@@ -22,18 +24,27 @@ public class NovaDespesaHelper {
     private RadioGroup campoStatusDesp;
     private Button campoDataVenc;
 
-    private String tipoDesp = null;
+
+    private static Integer idDespesa = 0;
+    private Integer tipoDesp;
     private String nomeDesp  = null;
     private String dataVenc = null;
     private float valorDesp = 0f;
-    private String status = null;
+    private Integer status;
 
-    public NovaDespesaHelper()
-    {
+    public DespesaHelper(AlterarDespesaActivity activity) {
 
+        this.campoNomeDesp = (EditText) activity.findViewById(R.id.nomeDespesa);
+        this.campoValorDesp = (EditText) activity.findViewById(R.id.valorDesp);
+        this.campoTipoDesp = (RadioGroup) activity.findViewById(R.id.tipoDespesa);
+        this.campoStatusDesp = (RadioGroup) activity.findViewById(R.id.statusDespesa);
+        this.campoDataVenc = (Button) activity.findViewById(R.id.dataVenc);
+        this.campoTipoDesp = (RadioGroup) activity.findViewById(R.id.tipoDespesa);
+        this.campoStatusDesp = (RadioGroup) activity.findViewById(R.id.statusDespesa);
     }
 
-    public NovaDespesaHelper(NovaDespesaActivity activity) {
+
+    public DespesaHelper(NovaDespesaActivity activity) {
 
         campoNomeDesp = (EditText) activity.findViewById(R.id.nomeDespesa);
         campoValorDesp = (EditText) activity.findViewById(R.id.valorDesp);
@@ -42,21 +53,51 @@ public class NovaDespesaHelper {
         campoStatusDesp = (RadioGroup) activity.findViewById(R.id.statusDespesa);
         campoDataVenc = (Button) activity.findViewById(R.id.dataVenc);
 
+    }
+
+    public void setDespesa(Despesa despesa)
+    {
+        DespesaHelper.idDespesa = despesa.getId();
+        this.campoNomeDesp.setText(despesa.getNomeDesp());
+        this.campoValorDesp.setText(""+despesa.getValorDesp());
+        this.campoDataVenc.setText(despesa.getDataVenc());
+
+        if(despesa.getTipoDesp() == 0) {
+            this.campoTipoDesp.check(R.id.tipoDespesaFixa);
+        }
+        else if(despesa.getTipoDesp() == 1) {
+            this.campoTipoDesp.check(R.id.tipoDespesaVariavel);
+        }
+
+            if(despesa.getStatus() == 0) {
+                this.campoStatusDesp.check(R.id.statusPago);
+            }
+            else if(despesa.getStatus() == 1) {
+                this.campoStatusDesp.check(R.id.statusNaoPago);
+            }
+
+
+    }
+
+    public Despesa getDespesa(Context contexto) {
+
+        Despesa despesa = null;
+
         switch (campoTipoDesp.getCheckedRadioButtonId()) {
             case R.id.tipoDespesaFixa:
-                tipoDesp = "Despesa Fixa";
+                tipoDesp = 0;
                 break;
             case R.id.tipoDespesaVariavel:
-                tipoDesp = "Despesa Variável";
+                tipoDesp = 1;
                 break;
         }
 
         switch (campoStatusDesp.getCheckedRadioButtonId()) {
             case R.id.statusPago:
-                status = "Despesa Paga";
+                status = 0;
                 break;
             case R.id.statusNaoPago:
-                status = "Despesa à Pagar";
+                status = 1;
                 break;
         }
 
@@ -65,8 +106,8 @@ public class NovaDespesaHelper {
                 ValidaCampoVazioHelper.validar(campoValorDesp, "Coloque um valor para sua despesa!") != true ||
                 ValidaCampoVazioHelper.validar(campoValorDesp, "Coloque um valor para sua despesa!") != true ||
                 ValidaCampoVazioHelper.validar(campoNomeDesp, "Coloque um nome para sua despesa!") != true
-           )
-            return;
+                )
+            return despesa;
 
 
         nomeDesp = campoNomeDesp.getText().toString();
@@ -79,12 +120,11 @@ public class NovaDespesaHelper {
         {
             Log.i("Nova Despesa Helper" , e.getMessage());
         }
-    }
 
-    public Despesa retornarDespesa(Context contexto) {
-        if(nomeDesp != null && tipoDesp != null && dataVenc != null && valorDesp > 0)
-            return new Despesa(nomeDesp, tipoDesp, dataVenc, valorDesp,status ,contexto);
-
-        return null;
+        if(nomeDesp != null && tipoDesp != null && dataVenc != null && valorDesp > 0) {
+            despesa = new Despesa(nomeDesp, tipoDesp, dataVenc, valorDesp, status, contexto);
+            despesa.setId(DespesaHelper.idDespesa);
+        }
+        return  despesa;
     }
 }

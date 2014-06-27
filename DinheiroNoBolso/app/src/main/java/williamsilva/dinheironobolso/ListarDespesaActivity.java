@@ -37,6 +37,10 @@ public class ListarDespesaActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //escreva o codigo para click simples aqui:
+                despesa = (Despesa) parent.getItemAtPosition(position);
+                Intent i = new Intent(ListarDespesaActivity.this,AlterarDespesaActivity.class);
+                i.putExtra("DespesaSelecionada",despesa);
+                startActivity(i);
             }
         });
 
@@ -68,8 +72,10 @@ public class ListarDespesaActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.novaDespesa:
+                startActivity(new Intent(this,NovaDespesaActivity.class));
+            break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -83,8 +89,8 @@ public class ListarDespesaActivity extends ActionBarActivity {
 
     private void carregarListaDespesas() {
 
-        Despesa despesa = new Despesa(this);
-        List<Despesa> despesas = despesa.getLista();
+        Despesa despesa = new Despesa();
+        List<Despesa> despesas = despesa.getLista(this);
         int layout = android.R.layout.simple_list_item_1;
         ArrayAdapter<Despesa> adapter = new ArrayAdapter<Despesa>(this,layout,despesas);
         lista.setAdapter(adapter);
@@ -99,25 +105,24 @@ public class ListarDespesaActivity extends ActionBarActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-
         int id = item.getItemId();
         switch (id)
         {
             case R.id.OPexcluir:
                 excluir();
                 break;
-            case R.id.OPalterar:
+            /*case R.id.OPalterar:
                 Intent i = new Intent(ListarDespesaActivity.this,AlterarDespesaActivity.class);
-                i.putExtra("DespesaSelecionada",5159159);
+                i.putExtra("DespesaSelecionada",despesa);
                 startActivity(i);
-                break;
+                break;*/
         }
 
         return super.onContextItemSelected(item);
     }
 
     private void excluir() {
-        despesa.excluir(despesa);
+        despesa.excluir(despesa,this);
         carregarListaDespesas();
     }
 }

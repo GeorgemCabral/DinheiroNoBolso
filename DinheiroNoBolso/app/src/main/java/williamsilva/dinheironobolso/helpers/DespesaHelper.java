@@ -102,10 +102,10 @@ public class DespesaHelper {
         }
 
         // tratamento sob campos não preenchidos
-        if(     ValidaCampoVazioHelper.validar(campoNomeDesp, "Coloque um nome para sua despesa!") != true   &&
-                ValidaCampoVazioHelper.validar(campoValorDesp, "Coloque um valor para sua despesa!") != true ||
-                ValidaCampoVazioHelper.validar(campoValorDesp, "Coloque um valor para sua despesa!") != true ||
-                ValidaCampoVazioHelper.validar(campoNomeDesp, "Coloque um nome para sua despesa!") != true
+        if(     ValidaCampoVazioHelper.validar(campoNomeDesp, "Insira um nome para sua despesa!") != true   &&
+                ValidaCampoVazioHelper.validar(campoValorDesp, "Insira um valor para sua despesa!") != true ||
+                ValidaCampoVazioHelper.validar(campoValorDesp, "Insira um valor para sua despesa!") != true ||
+                ValidaCampoVazioHelper.validar(campoNomeDesp, "Insira um nome para sua despesa!") != true
                 )
             return despesa;
 

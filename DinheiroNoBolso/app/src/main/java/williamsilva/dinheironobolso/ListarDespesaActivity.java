@@ -1,5 +1,6 @@
 package williamsilva.dinheironobolso;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class ListarDespesaActivity extends ActionBarActivity {
 
         lista = (ListView) findViewById(R.id.listaDeDespesas);
 
+        //informa o android para mostrar o menu quando a despesa e selecionada
         registerForContextMenu(lista);
 
         lista.setOnItemClickListener(new OnItemClickListener() {
@@ -57,7 +59,6 @@ public class ListarDespesaActivity extends ActionBarActivity {
 
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,11 +112,6 @@ public class ListarDespesaActivity extends ActionBarActivity {
             case R.id.OPexcluir:
                 excluir();
                 break;
-            /*case R.id.OPalterar:
-                Intent i = new Intent(ListarDespesaActivity.this,AlterarDespesaActivity.class);
-                i.putExtra("DespesaSelecionada",despesa);
-                startActivity(i);
-                break;*/
         }
 
         return super.onContextItemSelected(item);

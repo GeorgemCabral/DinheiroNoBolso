@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="williamsilva.dinheironobolso.ListarReceitasActivity" >
+
+    <item android:id="@+id/novaReceita"
+        android:title="@string/nova_receita"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_action_new"
+        app:showAsAction="ifRoom" />
+</menu>

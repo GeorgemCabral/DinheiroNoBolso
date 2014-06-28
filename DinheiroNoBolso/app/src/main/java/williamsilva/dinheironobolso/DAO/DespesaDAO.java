@@ -17,14 +17,6 @@ import williamsilva.dinheironobolso.models.Despesa;
 public class DespesaDAO {
 
     private static final String SCRIPT_DATABASE_DELETE = "DROP TABLE IF EXISTS DBDESPESAS";
-    private static String[] CREATE_DATA_BASE = new String[]{"CREATE TABLE `DBDESPESAS` (" +
-            " `DBDESPESAID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
-            " `DBDESPESANOME` TEXT NOT NULL, " +
-            " `DBDESPESATIPO` INTEGER NOT NULL, " +
-            " `DBDESPESAVALOR` REAL NOT NULL, " +
-            " `DBDESPESADATAVENC` TEXT NOT NULL, " +
-            " `DBDESPESASTATUS` INTEGER NOT NULL " +
-            ");"};
     private static String NOME_BANCO = "DINHEIRONOBOLSODB";
     private static final int VERSAO_BANCO = 1;
     private static String TABLE_DESPESA = "DBDESPESAS";
@@ -36,7 +28,8 @@ public class DespesaDAO {
     {
         this.contexto = contexto;
         dbHelper = new SQLiteHelper(this.contexto,DespesaDAO.NOME_BANCO,DespesaDAO.VERSAO_BANCO,
-                DespesaDAO.CREATE_DATA_BASE,SCRIPT_DATABASE_DELETE);
+         SCRIPT_DATABASE_DELETE);
+
         db = dbHelper.getWritableDatabase();
     }
 

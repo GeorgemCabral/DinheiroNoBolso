@@ -1,7 +1,10 @@
 package williamsilva.dinheironobolso;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -14,7 +17,10 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class NovaReceitaActivity extends ActionBarActivity {
+import williamsilva.dinheironobolso.helpers.ReceitaHelper;
+import williamsilva.dinheironobolso.models.Receita;
+
+public class NovaReceitaActivity extends Activity {
 
     private int ano,mes,dia;
     private Button dataRec;
@@ -85,18 +91,52 @@ public class NovaReceitaActivity extends ActionBarActivity {
         }
     };
 
-    public void salvarReceita(View view)
-    {
-        /*
-        ReceitaHelper helper = new ReceitaHelper(this);
-        Receita receita = helper.getReceita();
+    public void salvarReceita(View view) {
 
-        if(receita.novaReceita(receita,this) != true)
-            return;
+        AlertDialog alerta;
+        //Cria o gerador do AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //define o titulo
+        builder.setTitle("Dinheiro no Bolso");
+        //define a mensagem
+        builder.setMessage("Deseja salvar ?");
+        //define um botão como positivo
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
 
-        Toast.makeText(this,"A Receita " + receita.getNomeRec() + " foi salva com Sucesso!",Toast.LENGTH_LONG).show();
-        finish();
-     */
+                //escreva aqui
+                ReceitaHelper helper = new ReceitaHelper(NovaReceitaActivity.this);
+                Receita receita = helper.getReceita();
+
+                if(receita == null)
+                {
+                    Toast.makeText(NovaReceitaActivity.this,"Preencha todos os campos!",Toast.LENGTH_SHORT).show();
+                }
+                else if(receita != null)
+                {
+                    salvar(receita);
+                }
+            }
+        });
+        //define um botão como negativo.
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+                //escreva aqui
+                finish();
+            }
+        });
+        //cria o AlertDialog
+        alerta = builder.create();
+        alerta.show();
+
+
     }
 
+    public void salvar(Receita receita)
+    {
+        if (receita.novaReceita(receita,this) == true) {
+            Toast.makeText(this, "A Receita " + receita.getNomeRec() + " foi salva com Sucesso!", Toast.LENGTH_LONG).show();
+            finish();
+        }
+    }
 }

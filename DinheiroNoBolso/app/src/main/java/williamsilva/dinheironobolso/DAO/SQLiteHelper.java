@@ -16,7 +16,21 @@ class SQLiteHelper extends SQLiteOpenHelper {
 
     private static final String CATEGORIA = "SQLITE HELPER";
 
-    private String[] scriptSQLCreate;
+    private String[] scriptSQLCreate = {"CREATE TABLE `DBDESPESAS` (" +
+            " `DBDESPESAID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
+            " `DBDESPESANOME` TEXT NOT NULL, " +
+            " `DBDESPESATIPO` INTEGER NOT NULL, " +
+            " `DBDESPESAVALOR` REAL NOT NULL, " +
+            " `DBDESPESADATAVENC` TEXT NOT NULL, " +
+            " `DBDESPESASTATUS` INTEGER NOT NULL " +
+            ");", "CREATE TABLE `DBRECEITAS` ( " +
+            " `DBRECEITAID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+            " `DBRECEITANOME` TEXT NOT NULL, " +
+            " `DBRECEITATIPO` INTEGER NOT NULL, " +
+            " `DBRECEITAVALOR` REAL NOT NULL, " +
+            " `DBRECEITADATARECEBIMENTO` TEXT NOT NULL " +
+            ");" };
+
     private String scriptSQLDelete;
 
     /**
@@ -25,12 +39,11 @@ class SQLiteHelper extends SQLiteOpenHelper {
      * @param context
      * @param nomeBanco nome do banco de dados
      * @param versaoBanco versão do banco de dados (se for diferente é para atualizar)
-     * @param scriptSQLCreate SQL com o create table..
-     * @param scriptSQLDelete SQL com o drop table...
+     *  scriptSQLCreate SQL com o create table..
+     *  scriptSQLDelete SQL com o drop table...
      */
-    SQLiteHelper(Context context, String nomeBanco, int versaoBanco, String[] scriptSQLCreate, String scriptSQLDelete) {
+    SQLiteHelper(Context context, String nomeBanco, int versaoBanco, String scriptSQLDelete) {
         super(context, nomeBanco, null, versaoBanco);
-        this.scriptSQLCreate = scriptSQLCreate;
         this.scriptSQLDelete = scriptSQLDelete;
     }
 

@@ -1,5 +1,6 @@
 package williamsilva.dinheironobolso;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -38,7 +39,7 @@ public class PrincipalActivity extends ActionBarActivity {
                 break;
 
             case R.id.listarReceitas:
-                teste("Listar Receitas");
+                startActivity(new Intent(this,ListarReceitasActivity.class));
                 break;
 
             case R.id.despesasPagas:

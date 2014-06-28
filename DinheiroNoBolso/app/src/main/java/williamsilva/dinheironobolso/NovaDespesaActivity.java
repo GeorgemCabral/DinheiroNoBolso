@@ -1,5 +1,6 @@
 package williamsilva.dinheironobolso;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -19,7 +20,7 @@ import java.util.Calendar;
 import williamsilva.dinheironobolso.helpers.DespesaHelper;
 import williamsilva.dinheironobolso.models.Despesa;
 
-public class NovaDespesaActivity extends ActionBarActivity {
+public class NovaDespesaActivity extends Activity {
 
     private int ano, mes, dia;
     private Button dataDesp;

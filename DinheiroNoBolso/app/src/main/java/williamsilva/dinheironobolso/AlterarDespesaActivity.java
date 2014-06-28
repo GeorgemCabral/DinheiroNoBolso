@@ -42,6 +42,7 @@ public class AlterarDespesaActivity extends Activity {
         titulo = (TextView) findViewById(R.id.LabelNovaDespesa);
         titulo.setText("Alterar Despesa");
 
+        //para nao abrir o teclado ao usuario entrar na activity
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         // tratando o campo dataVenc

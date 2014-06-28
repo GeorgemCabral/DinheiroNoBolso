@@ -1,11 +1,12 @@
 package williamsilva.dinheironobolso;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class FinancasMesActivity extends ActionBarActivity {
+public class FinancasMesActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

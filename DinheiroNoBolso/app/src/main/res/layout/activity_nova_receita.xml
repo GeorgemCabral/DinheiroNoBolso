@@ -14,6 +14,7 @@
         android:background="#FFFFFF">
 
         <LinearLayout
+            android:id="@+id/LinearReceitas"
             android:background="#097054"
             android:orientation="vertical" >
 
@@ -35,19 +36,12 @@
             android:id="@+id/nomeReceita"
             android:inputType="text"
             />
-        <TextView android:text="@string/tipo_de_receita"/>
-        <RadioGroup
-            android:id="@+id/tipoReceita"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/tipoReceitaVariavel"
-                android:checked="true"
-                android:text="@string/receita_variavel"/>
-            <RadioButton
-                android:id="@+id/tipoReceitaSalario"
-                android:layout_marginLeft="30dp"
-                android:text="@string/salario_fixo"/>
-        </RadioGroup>
+        <CheckBox
+            android:id="@+id/salariofixoCheck"
+            android:text="@string/salario_fixo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
         <TableRow>
             <TextView
                 android:layout_gravity="center"

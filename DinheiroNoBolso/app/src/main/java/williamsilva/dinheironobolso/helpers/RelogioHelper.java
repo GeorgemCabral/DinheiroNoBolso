@@ -5,13 +5,15 @@ package williamsilva.dinheironobolso.helpers;
  */
 import java.util.Calendar;
 
-public class ConverterDataHelper {
+public class RelogioHelper {
 
-    private int dia,mes,ano;
+    private int dia,mes,ano,hora,minuto,segundo;
     //intancia o calendario da classe nativa Calendar
     private Calendar calendario = Calendar.getInstance();
 
-    public ConverterDataHelper(String data) {
+    public RelogioHelper(){}
+
+    public RelogioHelper(String data) {
 
         //ultiliza-se subString para trazer dia,mes e ano separadamente
         dia = Integer.parseInt(data.substring(0,2));
@@ -63,6 +65,22 @@ public class ConverterDataHelper {
     }
     public void setCalendario(Calendar calendario) {
         this.calendario = calendario;
+    }
+
+    public String dataHoje()
+    {
+        dia = calendario.get(Calendar.DAY_OF_MONTH);
+        mes = calendario.get(Calendar.MONTH);
+        ano = calendario.get(Calendar.YEAR);
+        return dia + "/" + mes + "/" + ano;
+    }
+
+    public String horarioDeAgora()
+    {
+        hora = calendario.get(Calendar.HOUR_OF_DAY);
+        minuto = calendario.get(Calendar.MINUTE);
+        segundo = calendario.get(Calendar.SECOND);
+        return hora + ":" + minuto + ":" + segundo;
     }
 
     public String toString()

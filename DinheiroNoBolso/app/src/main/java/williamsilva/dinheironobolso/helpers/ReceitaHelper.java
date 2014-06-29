@@ -2,6 +2,7 @@ package williamsilva.dinheironobolso.helpers;
 
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
@@ -16,7 +17,7 @@ public class ReceitaHelper {
 
     private EditText campoNomeRec,campoValorRec;
     private Button campoDataRec;
-    private RadioGroup campoTipoRec;
+    private CheckBox campoTipoRec;
     private Receita receita;
 
     private String nomeRec = null;
@@ -28,7 +29,7 @@ public class ReceitaHelper {
     public ReceitaHelper(NovaReceitaActivity activity) {
 
         this.campoNomeRec = (EditText) activity.findViewById(R.id.nomeReceita);
-        this.campoTipoRec = (RadioGroup) activity.findViewById(R.id.tipoReceita);
+        this.campoTipoRec = (CheckBox) activity.findViewById(R.id.salariofixoCheck);
         this.campoDataRec = (Button) activity.findViewById(R.id.dataReceb);
         this.campoValorRec = (EditText) activity.findViewById(R.id.valorRec);
 
@@ -38,20 +39,20 @@ public class ReceitaHelper {
 
         Receita receita = null;
 
-        switch (campoTipoRec.getCheckedRadioButtonId()) {
-            case R.id.tipoReceitaSalario:
-                tipoRec = 0;
-                break;
-            case R.id.tipoReceitaVariavel:
-                tipoRec = 1;
-                break;
+        if(this.campoTipoRec.isChecked())
+        {
+            tipoRec = 1;
+        }
+        else
+        {
+            tipoRec = 0;
         }
 
         if(ValidaCampoVazioHelper.validar(campoNomeRec,"Insira um nome para a receita!") != true &&
-           ValidaCampoVazioHelper.validar(campoValorRec,"Insira um valor para a receita") != true ||
-           ValidaCampoVazioHelper.validar(campoNomeRec,"Insira um nome para a receita!") != true ||
-           ValidaCampoVazioHelper.validar(campoValorRec,"Insira um valor para a receita") != true)
-           return null;
+                ValidaCampoVazioHelper.validar(campoValorRec,"Insira um valor para a receita") != true ||
+                ValidaCampoVazioHelper.validar(campoNomeRec,"Insira um nome para a receita!") != true ||
+                ValidaCampoVazioHelper.validar(campoValorRec,"Insira um valor para a receita") != true)
+            return null;
 
         nomeRec = campoNomeRec.getText().toString();
         dataRec = campoDataRec.getText().toString();
@@ -67,7 +68,7 @@ public class ReceitaHelper {
         }
 
         if(nomeRec != null || tipoRec != null || dataRec != null || valorRec != null)
-        receita = new Receita(nomeRec,tipoRec,dataRec,valorRec);
+            receita = new Receita(nomeRec,tipoRec,dataRec,valorRec);
 
         return receita;
     }

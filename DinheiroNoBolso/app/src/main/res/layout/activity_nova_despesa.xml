@@ -31,36 +31,26 @@
         </LinearLayout>
 
         <TableRow>
-        <TextView
-            android:text="@string/nome_da_despesa"
-            android:layout_marginTop="20dp"
-            />
+            <TextView
+                android:text="@string/nome_da_despesa"
+                android:layout_marginTop="20dp"
+                />
         </TableRow>
 
         <TableRow>
-        <EditText
-            android:id="@+id/nomeDespesa"
-            android:inputType="text"
-            />
+            <EditText
+                android:id="@+id/nomeDespesa"
+                android:inputType="text"
+                />
         </TableRow>
 
         <TableRow>
-        <TextView android:text="@string/tipo_de_despesa"/>
-        </TableRow>
-        <TableRow>
-
-        <RadioGroup
-            android:id="@+id/tipoDespesa"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/tipoDespesaVariavel"
-                android:checked="true"
-                android:text="@string/despesa_variavel"/>
-            <RadioButton
-                android:id="@+id/tipoDespesaFixa"
-                android:layout_marginLeft="30dp"
-                android:text="@string/despesa_fixa"/>
-        </RadioGroup>
+            <CheckBox
+                android:id="@+id/tipoDespesafixaChek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/despesa_fixa"
+                />
         </TableRow>
 
 
@@ -79,14 +69,14 @@
         </TableRow>
 
         <TableRow>
-        <TextView android:text="@string/valor_da_despesa"/>
+            <TextView android:text="@string/valor_da_despesa"/>
         </TableRow>
 
         <TableRow>
-        <EditText
-            android:id="@+id/valorDesp"
-            android:inputType="numberDecimal"
-            />
+            <EditText
+                android:id="@+id/valorDesp"
+                android:inputType="numberDecimal"
+                />
         </TableRow>
 
         <TableRow>
@@ -109,17 +99,17 @@
         </TableRow>
 
         <TableRow>
-        <Button
-            android:id="@+id/BtSalvarDespesa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="salvarDespesa"
-            android:text="@string/salvar"
-            android:background="#2baf2b"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            />
+            <Button
+                android:id="@+id/BtSalvarDespesa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="salvarDespesa"
+                android:text="@string/salvar"
+                android:background="#2baf2b"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                />
         </TableRow>
     </TableLayout>
 

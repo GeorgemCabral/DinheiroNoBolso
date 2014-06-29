@@ -3,6 +3,7 @@ package williamsilva.dinheironobolso.helpers;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,7 +21,7 @@ public class DespesaHelper {
 
     private EditText campoNomeDesp;
     private EditText campoValorDesp;
-    private RadioGroup campoTipoDesp;
+    private CheckBox campoTipoDesp;
     private RadioGroup campoStatusDesp;
     private Button campoDataVenc;
 
@@ -36,10 +37,9 @@ public class DespesaHelper {
 
         this.campoNomeDesp = (EditText) activity.findViewById(R.id.nomeDespesa);
         this.campoValorDesp = (EditText) activity.findViewById(R.id.valorDesp);
-        this.campoTipoDesp = (RadioGroup) activity.findViewById(R.id.tipoDespesa);
         this.campoStatusDesp = (RadioGroup) activity.findViewById(R.id.statusDespesa);
         this.campoDataVenc = (Button) activity.findViewById(R.id.dataVenc);
-        this.campoTipoDesp = (RadioGroup) activity.findViewById(R.id.tipoDespesa);
+        this.campoTipoDesp = (CheckBox) activity.findViewById(R.id.tipoDespesafixaChek);
         this.campoStatusDesp = (RadioGroup) activity.findViewById(R.id.statusDespesa);
     }
 
@@ -49,7 +49,7 @@ public class DespesaHelper {
         campoNomeDesp = (EditText) activity.findViewById(R.id.nomeDespesa);
         campoValorDesp = (EditText) activity.findViewById(R.id.valorDesp);
         campoDataVenc = (Button) activity.findViewById(R.id.dataVenc);
-        campoTipoDesp = (RadioGroup) activity.findViewById(R.id.tipoDespesa);
+        campoTipoDesp = (CheckBox) activity.findViewById(R.id.tipoDespesafixaChek);
         campoStatusDesp = (RadioGroup) activity.findViewById(R.id.statusDespesa);
         campoDataVenc = (Button) activity.findViewById(R.id.dataVenc);
 
@@ -62,19 +62,17 @@ public class DespesaHelper {
         this.campoValorDesp.setText(""+despesa.getValorDesp());
         this.campoDataVenc.setText(despesa.getDataVenc());
 
-        if(despesa.getTipoDesp() == 0) {
-            this.campoTipoDesp.check(R.id.tipoDespesaFixa);
-        }
-        else if(despesa.getTipoDesp() == 1) {
-            this.campoTipoDesp.check(R.id.tipoDespesaVariavel);
+        if(despesa.getTipoDesp() == 1) {
+            this.campoTipoDesp.setChecked(true);
         }
 
-            if(despesa.getStatus() == 0) {
-                this.campoStatusDesp.check(R.id.statusPago);
-            }
-            else if(despesa.getStatus() == 1) {
-                this.campoStatusDesp.check(R.id.statusNaoPago);
-            }
+
+        if(despesa.getStatus() == 0) {
+            this.campoStatusDesp.check(R.id.statusPago);
+        }
+        else if(despesa.getStatus() == 1) {
+            this.campoStatusDesp.check(R.id.statusNaoPago);
+        }
 
 
     }
@@ -83,13 +81,12 @@ public class DespesaHelper {
 
         Despesa despesa = null;
 
-        switch (campoTipoDesp.getCheckedRadioButtonId()) {
-            case R.id.tipoDespesaFixa:
-                tipoDesp = 0;
-                break;
-            case R.id.tipoDespesaVariavel:
-                tipoDesp = 1;
-                break;
+        if(campoTipoDesp.isChecked())
+        {
+            tipoDesp = 1;
+        }
+        else {
+            tipoDesp = 0;
         }
 
         switch (campoStatusDesp.getCheckedRadioButtonId()) {

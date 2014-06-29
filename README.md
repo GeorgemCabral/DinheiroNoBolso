@@ -1,4 +1,5 @@
 Dinheiro no Bolso
+=================
 
 Aplicativo para gerenciamento de finanças pessoais
 

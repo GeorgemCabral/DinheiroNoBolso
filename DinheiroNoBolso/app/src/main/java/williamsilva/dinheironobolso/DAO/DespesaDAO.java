@@ -63,7 +63,7 @@ public class DespesaDAO {
             while (cursor.moveToNext()) {
 
                 Despesa despesa = new Despesa(cursor.getString(0), Integer.parseInt(cursor.getString(1)), cursor.getString(3),
-                        Float.parseFloat(cursor.getString(2)), Integer.parseInt(cursor.getString(4)), contexto);
+                        Float.parseFloat(cursor.getString(2)), Integer.parseInt(cursor.getString(4)));
                 despesa.setId(Integer.parseInt(cursor.getString(5)));
                 despesas.add(despesa);
             }
@@ -109,7 +109,7 @@ public class DespesaDAO {
             Cursor cursor = db.query("DBDESPESAS", colunas,"DBDESPESAID=?", desp, null, null, null);
              cursor.moveToNext();
             despesa = new Despesa(cursor.getString(0), Integer.parseInt(cursor.getString(1)), cursor.getString(3),
-                    Float.parseFloat(cursor.getString(2)), Integer.parseInt(cursor.getString(4)), contexto);
+                    Float.parseFloat(cursor.getString(2)), Integer.parseInt(cursor.getString(4)));
 
         }catch (Exception e)
         {

@@ -4,8 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.List;
 
+import williamsilva.dinheironobolso.AlterarReceitaActivity;
 import williamsilva.dinheironobolso.DAO.ReceitaDAO;
 import williamsilva.dinheironobolso.ListarReceitasActivity;
 import williamsilva.dinheironobolso.NovaReceitaActivity;
@@ -13,7 +15,7 @@ import williamsilva.dinheironobolso.NovaReceitaActivity;
 /**
  * Created by William on 27/06/2014.
  */
-public class Receita {
+public class Receita implements Serializable {
 
     private String nomeRec;
     private Integer tipoRec;
@@ -79,5 +81,17 @@ public class Receita {
     public void excluir(Receita receita, Context contexto) {
         ReceitaDAO dao = new ReceitaDAO(contexto);
         dao.excluir(receita);
+    }
+
+    public Boolean alterarReceita(Receita receita, Context activity) {
+
+        ContentValues dados = new ContentValues();
+        dados.put("DBRECEITANOME",receita.getNomeRec());
+        dados.put("DBRECEITATIPO",receita.getTipoRec());
+        dados.put("DBRECEITAVALOR", receita.getValorRec());
+        dados.put("DBRECEITADATARECEBIMENTO",receita.getDataRec());
+
+        ReceitaDAO dao = new ReceitaDAO(activity);
+        return dao.alterarReceita(dados,receita.getId());
     }
 }

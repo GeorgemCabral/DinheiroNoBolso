@@ -42,8 +42,9 @@ public class ListarReceitasActivity extends ActionBarActivity  {
     private AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            receita = (Receita) parent.getItemAtPosition(position);
             Intent intent = new Intent(ListarReceitasActivity.this,AlterarReceitaActivity.class);
+            intent.putExtra("receitaSelect",receita);
             startActivity(intent);
         }
     };

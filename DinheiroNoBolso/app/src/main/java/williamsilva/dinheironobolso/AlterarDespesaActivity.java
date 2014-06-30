@@ -6,11 +6,14 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +59,9 @@ public class AlterarDespesaActivity extends Activity {
 
          Intent i = getIntent();
          despesa = (Despesa)  i.getSerializableExtra("DespesaSelecionada");
+
+        LinearLayout linear = (LinearLayout) findViewById(R.id.linearDespesa);
+        linear.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#e84e40")));
 
     }
 
@@ -108,7 +114,7 @@ public class AlterarDespesaActivity extends Activity {
                 //escreva aqui
                 DespesaHelper helper = new DespesaHelper(AlterarDespesaActivity.this);
                 Despesa despesa = null;
-                despesa = helper.getDespesa(AlterarDespesaActivity.this);
+                despesa = helper.getDespesa();
 
                 if(despesa == null)
                 {
@@ -139,7 +145,7 @@ public class AlterarDespesaActivity extends Activity {
         // Toast.makeText(NovaDespesaActivity.this, "Salvo com sucesso!", Toast.LENGTH_LONG).show();
         if(despesa.alteraDespesa(despesa, this) != true)
             return;
-        Toast.makeText(this,"A Despesa " + despesa.getNomeDesp() + " foi alterada com Sucesso!",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"A despesa " + despesa.getNomeDesp() + " foi alterada com Sucesso!",Toast.LENGTH_LONG).show();
         finish();
     }
 }

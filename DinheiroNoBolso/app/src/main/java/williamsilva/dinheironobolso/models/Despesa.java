@@ -26,7 +26,7 @@ public class Despesa implements Serializable{
 
     }
 
-    public Despesa(String nomeDesp, Integer tipoDesp, String dataVenc, float valorDesp, Integer status ,Context contexto) {
+    public Despesa(String nomeDesp, Integer tipoDesp, String dataVenc, float valorDesp, Integer status) {
 
         this.nomeDesp = nomeDesp;
         this.tipoDesp = tipoDesp;

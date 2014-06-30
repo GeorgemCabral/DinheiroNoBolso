@@ -6,6 +6,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
+import williamsilva.dinheironobolso.AlterarReceitaActivity;
 import williamsilva.dinheironobolso.NovaReceitaActivity;
 import williamsilva.dinheironobolso.R;
 import williamsilva.dinheironobolso.models.Receita;
@@ -24,7 +25,15 @@ public class ReceitaHelper {
     private Integer tipoRec = null;
     private String dataRec = null;
     private Float valorRec = null;
+    private static Integer id;
 
+    public ReceitaHelper(AlterarReceitaActivity activity){
+
+        this.campoNomeRec = (EditText) activity.findViewById(R.id.nomeReceita);
+        this.campoTipoRec = (CheckBox) activity.findViewById(R.id.salariofixoCheck);
+        this.campoDataRec = (Button) activity.findViewById(R.id.dataReceb);
+        this.campoValorRec = (EditText) activity.findViewById(R.id.valorRec);
+    }
 
     public ReceitaHelper(NovaReceitaActivity activity) {
 
@@ -67,9 +76,24 @@ public class ReceitaHelper {
             receita =  null;
         }
 
-        if(nomeRec != null || tipoRec != null || dataRec != null || valorRec != null)
+        if(nomeRec != null || tipoRec != null || dataRec != null || valorRec != null){
             receita = new Receita(nomeRec,tipoRec,dataRec,valorRec);
+            receita.setId(ReceitaHelper.id);
+        }
+
 
         return receita;
+    }
+
+    public void setReceita(Receita receita) {
+
+        ReceitaHelper.id = receita.getId();
+        this.campoNomeRec.setText(receita.getNomeRec());
+        this.campoDataRec.setText(receita.getDataRec());
+        this.campoValorRec.setText(""+receita.getValorRec());
+
+        if(receita.getTipoRec() == 1) {
+            campoTipoRec.setChecked(true);
+        }
     }
 }

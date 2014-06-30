@@ -105,7 +105,7 @@ public class NovaDespesaActivity extends Activity {
                 //escreva aqui
                 DespesaHelper helper = new DespesaHelper(NovaDespesaActivity.this);
                 Despesa despesa = null;
-                despesa = helper.getDespesa(NovaDespesaActivity.this);
+                despesa = helper.getDespesa();
 
                 if(despesa == null)
                 {
@@ -138,7 +138,7 @@ public class NovaDespesaActivity extends Activity {
             return;
 
 
-        Toast.makeText(this,"A Despesa " + despesa.getNomeDesp() + " foi salva com Sucesso!",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"A despesa " + despesa.getNomeDesp() + " foi salva com Sucesso!",Toast.LENGTH_LONG).show();
         finish();
 
     }

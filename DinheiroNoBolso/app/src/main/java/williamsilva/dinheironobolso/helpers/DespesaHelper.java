@@ -77,7 +77,7 @@ public class DespesaHelper {
 
     }
 
-    public Despesa getDespesa(Context contexto) {
+    public Despesa getDespesa() {
 
         Despesa despesa = null;
 
@@ -119,7 +119,7 @@ public class DespesaHelper {
         }
 
         if(nomeDesp != null && tipoDesp != null && dataVenc != null && valorDesp > 0) {
-            despesa = new Despesa(nomeDesp, tipoDesp, dataVenc, valorDesp, status, contexto);
+            despesa = new Despesa(nomeDesp, tipoDesp, dataVenc, valorDesp, status);
             despesa.setId(DespesaHelper.idDespesa);
         }
         return  despesa;

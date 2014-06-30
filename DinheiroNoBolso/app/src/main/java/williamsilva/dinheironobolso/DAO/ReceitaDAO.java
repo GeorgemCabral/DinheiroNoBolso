@@ -2,6 +2,7 @@ package williamsilva.dinheironobolso.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -92,5 +93,23 @@ public class ReceitaDAO {
             fechar();
         }
 
+    }
+
+    public Boolean alterarReceita(ContentValues dados, Integer id) {
+
+        Integer count = 0;
+        try{
+            count = db.update(TABLE_RECEITA,dados,"DBRECEITAID=?",new String[]{id.toString()});
+        }catch (Exception e){
+            Log.i("Erro alterar receita",e.getMessage());
+        }
+        finally {
+            fechar();
+        }
+
+        if(count > 0)
+            return true;
+        else
+            return false;
     }
 }

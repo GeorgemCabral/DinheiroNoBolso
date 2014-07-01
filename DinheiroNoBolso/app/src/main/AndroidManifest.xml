@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="williamsilva.dinheironobolso" >
+    package="williamsilva.dinheironobolso"
+    android:versionCode="1"
+    android:versionName="1.1">
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/logomarca"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".PrincipalActivity"
             android:label="@string/app_name"
@@ -51,6 +53,10 @@
             android:name=".AlterarReceitaActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".DespesasVencidasActivity"
+            android:label="@string/app_name" >
         </activity>
     </application>
 

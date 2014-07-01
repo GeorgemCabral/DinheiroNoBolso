@@ -47,7 +47,7 @@ public class PrincipalActivity extends ActionBarActivity {
                 break;
 
             case R.id.despesasVencidas:
-                teste("Despesas Vencidas");
+                startActivity(new Intent(this,DespesasVencidasActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

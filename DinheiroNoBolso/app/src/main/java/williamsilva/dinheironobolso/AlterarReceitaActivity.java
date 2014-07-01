@@ -45,11 +45,11 @@ public class AlterarReceitaActivity extends ActionBarActivity {
         titulo = (TextView) findViewById(R.id.LabelNovaReceita);
         titulo.setText("Alterar Receita");
 
-        //para nao abrir o teclado ao usuario entrar na activity
+        //para nao abrir o teclado ao usuario acessar a activity
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        LinearLayout linear = (LinearLayout) findViewById(R.id.LinearReceitas);
-        linear.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009688")));
+       /* LinearLayout linear = (LinearLayout) findViewById(R.id.LinearReceitas);
+        linear.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009688")));*/
 
         Intent intent = getIntent();
         receita = (Receita) intent.getSerializableExtra("receitaSelect");

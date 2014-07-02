@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e0e0e0"
     >
 
     <LinearLayout
@@ -23,7 +22,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#e0e0e0"
+            android:background="#ffffff"
             >
             <TextView
                 android:id="@+id/LabelsaldoLiquido"
@@ -41,7 +40,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="22dp"
                 android:layout_marginRight="40dp"
-                android:text="R$ 1300.00"
+                android:text="R$ 0.00"
                 android:textColor="#259b24"
                 android:textSize="15sp"
                 />
@@ -65,7 +64,7 @@
                 android:layout_below="@+id/saldoLiquido"
                 android:layout_marginTop="22dp"
                 android:layout_marginRight="40dp"
-                android:text="R$ 980.00"
+                android:text="R$ 0.00"
                 android:textColor="#d01716"
                 android:textSize="15sp"
                 />
@@ -89,7 +88,7 @@
                 android:layout_below="@+id/totalDespesa"
                 android:layout_marginTop="22dp"
                 android:layout_marginRight="40dp"
-                android:text="R$ 180.00"
+                android:text="R$ 0.00"
                 android:textColor="#d01716"
                 android:textSize="15sp"
                 />
@@ -115,7 +114,7 @@
                 android:layout_below="@+id/totalDespesaNaoPagas"
                 android:layout_marginTop="22dp"
                 android:layout_marginRight="40dp"
-                android:text="R$ 800.00"
+                android:text="R$ 0.00"
                 android:textColor="#f57f17"
                 android:textSize="15sp"
                 />
@@ -141,7 +140,7 @@
                 android:layout_below="@+id/totalDespesaPagas"
                 android:layout_marginTop="22dp"
                 android:layout_marginRight="40dp"
-                android:text="R$ 500.00"
+                android:text="R$ 0.00"
                 android:textColor="#259b24"
                 android:textSize="15sp"
                 />

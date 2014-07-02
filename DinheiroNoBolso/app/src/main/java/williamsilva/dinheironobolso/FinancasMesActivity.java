@@ -1,17 +1,73 @@
 package williamsilva.dinheironobolso;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.text.DecimalFormat;
+import java.util.List;
+
+import williamsilva.dinheironobolso.models.Despesa;
+import williamsilva.dinheironobolso.models.Receita;
 
 public class FinancasMesActivity extends Activity {
+
+    private Float despesaTotal = 0f,saldoTotal = 0f;
+    DecimalFormat df = new DecimalFormat("#.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_financas_mes);
+
+        retornarToalReceitaBruta();
+        retornarTotalDespesas();
+        retornarTotalReceitaLiquida();
+    }
+
+    private void retornarTotalReceitaLiquida() {
+        TextView receitaLiquida = (TextView) findViewById(R.id.saldoAtual);
+        receitaLiquida.setText("R$ "+df.format(saldoTotal - despesaTotal));
+
+        if(saldoTotal - despesaTotal < 0)
+        {
+            receitaLiquida.setTextColor(Color.parseColor("#d01716"));
+        }
+    }
+
+    private void retornarTotalDespesas() {
+
+        Despesa dep = new Despesa();
+        List<Despesa>despesas = dep.getLista(this);
+
+        for (int i = 0; i < despesas.size(); i++){
+
+            despesaTotal = despesaTotal + despesas.get(i).getValorDesp();
+        }
+
+        TextView totalDespesa = (TextView) findViewById(R.id.totalDespesa);
+        totalDespesa.setText("R$ "+df.format(despesaTotal));
+    }
+
+    private void retornarToalReceitaBruta() {
+
+
+        Receita rec = new Receita();
+        List<Receita> receitas = rec.getLista(this);
+
+        for ( int i = 0; i < receitas.size(); i++){
+
+            saldoTotal = saldoTotal + receitas.get(i).getValorRec();
+        }
+
+        TextView saldobruto = (TextView) findViewById(R.id.saldoLiquido);
+        saldobruto.setText("R$ "+df.format(saldoTotal));
+
     }
 
 

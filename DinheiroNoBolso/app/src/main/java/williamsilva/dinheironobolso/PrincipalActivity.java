@@ -66,7 +66,7 @@ public class PrincipalActivity extends ActionBarActivity {
                 startActivity(new Intent(this,FinancasMesActivity.class));
                 break;
             case R.id.informacoes:
-
+                teste("Informações");
                 break;
         }
 

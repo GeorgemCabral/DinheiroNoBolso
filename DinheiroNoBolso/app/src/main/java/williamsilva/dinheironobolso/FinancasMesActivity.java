@@ -46,17 +46,19 @@ public class FinancasMesActivity extends Activity {
         Despesa dep = new Despesa();
         List<Despesa>despesas = dep.getLista(this);
         RelogioHelper relogioSys = new RelogioHelper(RelogioHelper.dataHoje());
-        Integer mesSys, mesBanco;
+        Integer mesSys, mesBanco,anoSys,anoBanco;
 
         mesSys = relogioSys.getMes();
+        anoSys = relogioSys.getAno();
 
 
         for (int i = 0; i < despesas.size(); i++){
 
             RelogioHelper relogioBanco = new RelogioHelper(despesas.get(i).getDataVenc());
             mesBanco = relogioBanco.getMes();
+            anoBanco = relogioBanco.getAno();
 
-            if(mesSys.equals(mesBanco)) {
+            if(mesSys.equals(mesBanco) && anoSys.equals(anoBanco)) {
                 despesaTotal = despesaTotal + despesas.get(i).getValorDesp();
             }
         }
@@ -71,15 +73,17 @@ public class FinancasMesActivity extends Activity {
         Receita rec = new Receita();
         List<Receita> receitas = rec.getLista(this);
         RelogioHelper relogioSys = new RelogioHelper(RelogioHelper.dataHoje());
-        Integer mesSys,mesBanco;
+        Integer mesSys,mesBanco,anoSys,anoBanco;
         mesSys = relogioSys.getMes();
+        anoSys = relogioSys.getAno();
 
         for ( int i = 0; i < receitas.size(); i++){
 
             RelogioHelper relogioBanco = new RelogioHelper(receitas.get(i).getDataRec());
             mesBanco = relogioBanco.getMes();
+            anoBanco = relogioBanco.getAno();
 
-            if(mesBanco.equals(mesSys)) {
+            if(mesBanco.equals(mesSys) && anoBanco.equals(anoSys)) {
                 saldoTotal = saldoTotal + receitas.get(i).getValorRec();
             }
         }

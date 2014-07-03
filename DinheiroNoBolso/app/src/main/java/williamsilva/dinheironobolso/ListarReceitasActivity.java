@@ -118,20 +118,22 @@ public class ListarReceitasActivity extends ActionBarActivity  {
 
         receitas  = receita.getLista(this);
 
-        Integer mesSys,mesBanco;
+        Integer mesSys,mesBanco,anoSys,anoBanco;
 
         RelogioHelper dataSys,dataBanco;
 
         dataSys  = new RelogioHelper(RelogioHelper.dataHoje());
 
         mesSys = dataSys.getMes();
+        anoSys = dataSys.getAno();
 
         for(int i = 0; i < receitas.size(); i++)
         {
             dataBanco = new RelogioHelper(receitas.get(i).getDataRec());
             mesBanco = dataBanco.getMes();
+            anoBanco = dataBanco.getAno();
 
-                if(mesBanco.equals(mesSys))
+                if(mesBanco.equals(mesSys) && anoBanco.equals(anoSys))
                     receitasDoMes.add(receitas.get(i));
         }
 

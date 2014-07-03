@@ -91,14 +91,16 @@ public class ListarDespesaActivity extends ActionBarActivity {
     }
 
     private void carregarListaDespesas() {
+
         Despesa despesa = new Despesa();
         List<Despesa> despesas,despesasDoMes = new ArrayList<Despesa>();
         RelogioHelper dataSys,dataBanco;
-        Integer mesSys,mesBanco;
+        Integer mesSys,mesBanco,anoSys,anoBanco;
 
         despesas = despesa.getLista(this);
         dataSys = new RelogioHelper(RelogioHelper.dataHoje());
         mesSys = dataSys.getMes();
+        anoSys = dataSys.getAno();
 
 
 
@@ -107,8 +109,9 @@ public class ListarDespesaActivity extends ActionBarActivity {
         {
             dataBanco = new RelogioHelper(despesas.get(i).getDataVenc());
             mesBanco = dataBanco.getMes();
+            anoBanco = dataBanco.getAno();
 
-            if(mesSys.equals(mesBanco))
+            if(mesSys.equals(mesBanco) && anoSys.equals(anoBanco))
                 despesasDoMes.add(despesas.get(i));
 
         }

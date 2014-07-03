@@ -13,8 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import williamsilva.dinheironobolso.helpers.RelogioHelper;
 import williamsilva.dinheironobolso.models.Despesa;
 
 import static android.widget.AdapterView.OnItemClickListener;
@@ -89,11 +91,30 @@ public class ListarDespesaActivity extends ActionBarActivity {
     }
 
     private void carregarListaDespesas() {
-
         Despesa despesa = new Despesa();
-        List<Despesa> despesas = despesa.getLista(this);
+        List<Despesa> despesas,despesasDoMes = new ArrayList<Despesa>();
+        RelogioHelper dataSys,dataBanco;
+        Integer mesSys,mesBanco;
+
+        despesas = despesa.getLista(this);
+        dataSys = new RelogioHelper(RelogioHelper.dataHoje());
+        mesSys = dataSys.getMes();
+
+
+
+
+        for (int i = 0; i < despesas.size(); i++)
+        {
+            dataBanco = new RelogioHelper(despesas.get(i).getDataVenc());
+            mesBanco = dataBanco.getMes();
+
+            if(mesSys.equals(mesBanco))
+                despesasDoMes.add(despesas.get(i));
+
+        }
+
         int layout = android.R.layout.simple_list_item_1;
-        ArrayAdapter<Despesa> adapter = new ArrayAdapter<Despesa>(this,layout,despesas);
+        ArrayAdapter<Despesa> adapter = new ArrayAdapter<Despesa>(this,layout,despesasDoMes);
         lista.setAdapter(adapter);
     }
 

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import williamsilva.dinheironobolso.helpers.RelogioHelper;
 import williamsilva.dinheironobolso.models.Despesa;
 import williamsilva.dinheironobolso.models.Receita;
 
@@ -44,10 +45,20 @@ public class FinancasMesActivity extends Activity {
 
         Despesa dep = new Despesa();
         List<Despesa>despesas = dep.getLista(this);
+        RelogioHelper relogioSys = new RelogioHelper(RelogioHelper.dataHoje());
+        Integer mesSys, mesBanco;
+
+        mesSys = relogioSys.getMes();
+
 
         for (int i = 0; i < despesas.size(); i++){
 
-            despesaTotal = despesaTotal + despesas.get(i).getValorDesp();
+            RelogioHelper relogioBanco = new RelogioHelper(despesas.get(i).getDataVenc());
+            mesBanco = relogioBanco.getMes();
+
+            if(mesSys.equals(mesBanco)) {
+                despesaTotal = despesaTotal + despesas.get(i).getValorDesp();
+            }
         }
 
         TextView totalDespesa = (TextView) findViewById(R.id.totalDespesa);
@@ -59,10 +70,18 @@ public class FinancasMesActivity extends Activity {
 
         Receita rec = new Receita();
         List<Receita> receitas = rec.getLista(this);
+        RelogioHelper relogioSys = new RelogioHelper(RelogioHelper.dataHoje());
+        Integer mesSys,mesBanco;
+        mesSys = relogioSys.getMes();
 
         for ( int i = 0; i < receitas.size(); i++){
 
-            saldoTotal = saldoTotal + receitas.get(i).getValorRec();
+            RelogioHelper relogioBanco = new RelogioHelper(receitas.get(i).getDataRec());
+            mesBanco = relogioBanco.getMes();
+
+            if(mesBanco.equals(mesSys)) {
+                saldoTotal = saldoTotal + receitas.get(i).getValorRec();
+            }
         }
 
         TextView saldobruto = (TextView) findViewById(R.id.saldoLiquido);

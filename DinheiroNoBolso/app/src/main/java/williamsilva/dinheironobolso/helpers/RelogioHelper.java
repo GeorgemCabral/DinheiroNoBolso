@@ -7,7 +7,7 @@ import java.util.Calendar;
 
 public class RelogioHelper {
 
-    private int dia,mes,ano,hora,minuto,segundo;
+    private int dia,mes,ano;
     //intancia o calendario da classe nativa Calendar
     private Calendar calendario = Calendar.getInstance();
 
@@ -15,10 +15,17 @@ public class RelogioHelper {
 
     public RelogioHelper(String data) {
 
-        //ultiliza-se subString para trazer dia,mes e ano separadamente
-        dia = Integer.parseInt(data.substring(0,2));
-        mes = Integer.parseInt(data.substring(3,5));
-        ano = Integer.parseInt(data.substring(6,10));
+        //ultiliza-se subString para trazer dia,mes e ano separadamente 03/02/2014
+        if(data.length() == 10) {
+            dia = Integer.parseInt(data.substring(0, 2));
+            mes = Integer.parseInt(data.substring(3, 5));
+            ano = Integer.parseInt(data.substring(6, 10));
+        }else if(data.length() == 8)
+        {
+            dia = Integer.parseInt(data.substring(0, 1));
+            mes = Integer.parseInt(data.substring(2, 3));
+            ano = Integer.parseInt(data.substring(4, 8));
+        }
 
 
 		/* seto o dia, mes e ano, e no caso do mes ultilizo o mes-1 pois a classe
@@ -67,16 +74,21 @@ public class RelogioHelper {
         this.calendario = calendario;
     }
 
-    public String dataHoje()
+    public static String dataHoje()
     {
+        Integer dia,mes,ano;
+        Calendar calendario = Calendar.getInstance();
         dia = calendario.get(Calendar.DAY_OF_MONTH);
         mes = calendario.get(Calendar.MONTH);
         ano = calendario.get(Calendar.YEAR);
-        return dia + "/" + mes + "/" + ano;
+        return dia + "/" + (mes+1) + "/" + ano;
     }
 
-    public String horarioDeAgora()
+    public static String horarioDeAgora()
     {
+        Integer hora,minuto,segundo;
+        Calendar calendario = Calendar.getInstance();
+
         hora = calendario.get(Calendar.HOUR_OF_DAY);
         minuto = calendario.get(Calendar.MINUTE);
         segundo = calendario.get(Calendar.SECOND);

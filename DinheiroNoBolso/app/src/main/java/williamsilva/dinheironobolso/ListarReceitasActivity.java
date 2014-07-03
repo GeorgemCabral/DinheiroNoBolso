@@ -13,9 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import williamsilva.dinheironobolso.R;
+import williamsilva.dinheironobolso.helpers.RelogioHelper;
 import williamsilva.dinheironobolso.models.Receita;
 
 public class ListarReceitasActivity extends ActionBarActivity  {
@@ -111,9 +113,32 @@ public class ListarReceitasActivity extends ActionBarActivity  {
     private void carregarListaReceitas() {
 
         Receita receita = new Receita();
-        List<Receita> receitas = receita.getLista(this);
+
+        List<Receita> receitas,receitasDoMes = new ArrayList<Receita>();
+
+        receitas  = receita.getLista(this);
+
+        Integer mesSys,mesBanco;
+
+        RelogioHelper dataSys,dataBanco;
+
+        dataSys  = new RelogioHelper(RelogioHelper.dataHoje());
+
+        mesSys = dataSys.getMes();
+
+        for(int i = 0; i < receitas.size(); i++)
+        {
+            dataBanco = new RelogioHelper(receitas.get(i).getDataRec());
+            mesBanco = dataBanco.getMes();
+
+                if(mesBanco.equals(mesSys))
+                    receitasDoMes.add(receitas.get(i));
+        }
+
+
+
         int layout = android.R.layout.simple_list_item_1;
-        ArrayAdapter<Receita> adapter = new ArrayAdapter<Receita>(this,layout,receitas);
+        ArrayAdapter<Receita> adapter = new ArrayAdapter<Receita>(this,layout,receitasDoMes);
         lista.setAdapter(adapter);
     }
 

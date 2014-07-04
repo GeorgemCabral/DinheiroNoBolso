@@ -117,13 +117,17 @@ public class AlterarDespesaActivity extends Activity {
                 //escreva aqui
                 DespesaHelper helper = new DespesaHelper(AlterarDespesaActivity.this);
                 Despesa despesa = null;
-                despesa = helper.getDespesa();
 
-                if(despesa == null)
-                {
-                    Toast.makeText(AlterarDespesaActivity.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                try {
+                    despesa = helper.getDespesa();
+                }catch (Exception e){
+
+                    Toast.makeText(AlterarDespesaActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+
                 }
-                else if(despesa != null)
+
+
+                if(despesa != null)
                 {
                     alterar(despesa);
                 }
@@ -148,7 +152,7 @@ public class AlterarDespesaActivity extends Activity {
         // Toast.makeText(NovaDespesaActivity.this, "Salvo com sucesso!", Toast.LENGTH_LONG).show();
         if(despesa.alteraDespesa(despesa, this) != true)
             return;
-        Toast.makeText(this,"A despesa " + despesa.getNomeDesp() + " foi alterada com Sucesso!",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Alterado com sucesso!",Toast.LENGTH_SHORT).show();
         finish();
     }
 }

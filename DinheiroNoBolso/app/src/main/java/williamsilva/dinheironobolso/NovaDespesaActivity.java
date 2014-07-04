@@ -105,16 +105,19 @@ public class NovaDespesaActivity extends Activity {
                 //escreva aqui
                 DespesaHelper helper = new DespesaHelper(NovaDespesaActivity.this);
                 Despesa despesa = null;
-                despesa = helper.getDespesa();
 
-                if(despesa == null)
-                {
-                    Toast.makeText(NovaDespesaActivity.this,"Preencha todos os campos!",Toast.LENGTH_SHORT).show();
+                try {
+                    despesa = helper.getDespesa();
+                }catch (Exception e){
+
+                    Toast.makeText(NovaDespesaActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+
                 }
-                else if(despesa != null)
-                {
-                    salvar(despesa);
-                }
+
+                    if(despesa != null)
+                    {
+                        salvar(despesa);
+                    }
             }
         });
         //define um botão como negativo.
@@ -138,7 +141,7 @@ public class NovaDespesaActivity extends Activity {
             return;
 
 
-        Toast.makeText(this,"A despesa " + despesa.getNomeDesp() + " foi salva com Sucesso!",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Salvo com sucesso!",Toast.LENGTH_SHORT).show();
         finish();
 
     }

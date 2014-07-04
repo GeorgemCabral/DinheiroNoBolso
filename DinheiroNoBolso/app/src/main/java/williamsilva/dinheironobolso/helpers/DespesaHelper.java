@@ -11,6 +11,8 @@ import android.widget.RadioGroup;
 import williamsilva.dinheironobolso.AlterarDespesaActivity;
 import williamsilva.dinheironobolso.NovaDespesaActivity;
 import williamsilva.dinheironobolso.R;
+import williamsilva.dinheironobolso.exceptions.CampoVazioException;
+import williamsilva.dinheironobolso.exceptions.NomeComMaximoCaracteresException;
 import williamsilva.dinheironobolso.models.Despesa;
 
 /**
@@ -67,10 +69,10 @@ public class DespesaHelper {
         }
 
 
-        if(despesa.getStatus() == 0) {
+        if(despesa.getStatus() == 1) {
             this.campoStatusDesp.check(R.id.statusPago);
         }
-        else if(despesa.getStatus() == 1) {
+        else if(despesa.getStatus() == 0) {
             this.campoStatusDesp.check(R.id.statusNaoPago);
         }
 
@@ -91,10 +93,10 @@ public class DespesaHelper {
 
         switch (campoStatusDesp.getCheckedRadioButtonId()) {
             case R.id.statusPago:
-                status = 0;
+                status = 1;
                 break;
             case R.id.statusNaoPago:
-                status = 1;
+                status = 0;
                 break;
         }
 
@@ -104,11 +106,14 @@ public class DespesaHelper {
                 ValidaCampoVazioHelper.validar(campoValorDesp, "Insira um valor para sua despesa!") != true ||
                 ValidaCampoVazioHelper.validar(campoNomeDesp, "Insira um nome para sua despesa!") != true
                 )
-            return despesa;
+            throw new CampoVazioException("Preencha todos os campos");
 
 
         nomeDesp = campoNomeDesp.getText().toString();
         dataVenc = campoDataVenc.getText().toString();
+
+        if(nomeDesp.length() > 15)
+            throw new NomeComMaximoCaracteresException("Insira um nome com no máximo 15 caracteres");
 
         try {
             valorDesp = Float.parseFloat(campoValorDesp.getText().toString());

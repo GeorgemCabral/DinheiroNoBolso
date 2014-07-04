@@ -9,6 +9,8 @@ import android.widget.RadioGroup;
 import williamsilva.dinheironobolso.AlterarReceitaActivity;
 import williamsilva.dinheironobolso.NovaReceitaActivity;
 import williamsilva.dinheironobolso.R;
+import williamsilva.dinheironobolso.exceptions.CampoVazioException;
+import williamsilva.dinheironobolso.exceptions.NomeComMaximoCaracteresException;
 import williamsilva.dinheironobolso.models.Receita;
 
 /**
@@ -61,10 +63,13 @@ public class ReceitaHelper {
                 ValidaCampoVazioHelper.validar(campoValorRec,"Insira um valor para a receita") != true ||
                 ValidaCampoVazioHelper.validar(campoNomeRec,"Insira um nome para a receita!") != true ||
                 ValidaCampoVazioHelper.validar(campoValorRec,"Insira um valor para a receita") != true)
-            return null;
+            throw new CampoVazioException("Preencha todos os campos");
 
         nomeRec = campoNomeRec.getText().toString();
         dataRec = campoDataRec.getText().toString();
+
+        if(nomeRec.length() > 15)
+            throw new NomeComMaximoCaracteresException("Insira um nome com no máximo 15 caracteres");
 
         try
         {

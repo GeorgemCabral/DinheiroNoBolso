@@ -16,10 +16,10 @@ import williamsilva.dinheironobolso.helpers.RelogioHelper;
 import williamsilva.dinheironobolso.models.Despesa;
 import williamsilva.dinheironobolso.models.Receita;
 
-public class FinancasMesActivity extends Activity {
+public class FinancasMesActivity extends ActionBarActivity {
 
-    private Float despesaTotal = 0f,saldoTotal = 0f;
-    DecimalFormat df = new DecimalFormat("#.00");
+    private Float despesaTotal = 0f,saldoTotal = 0f,totalDespesasPagas = 0f,totalDespesasNaoPagas = 0f;
+    DecimalFormat df = new DecimalFormat("#0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +28,72 @@ public class FinancasMesActivity extends Activity {
 
         retornarToalReceitaBruta();
         retornarTotalDespesas();
+        retornarDespesasNaoPagas();
+        retornarDespesasPagas();
         retornarTotalReceitaLiquida();
     }
 
+    private void retornarDespesasNaoPagas() {
+
+        Despesa despesa = new Despesa();
+        List<Despesa>despesas = despesa.getLista(this);
+        RelogioHelper relogioSys = new RelogioHelper(RelogioHelper.dataHoje());
+        Integer mesSys, mesBanco,anoSys,anoBanco;
+
+        mesSys = relogioSys.getMes();
+        anoSys = relogioSys.getAno();
+
+
+        for(int i = 0; i < despesas.size(); i++){
+
+            RelogioHelper relogioBanco = new RelogioHelper(despesas.get(i).getDataVenc());
+            mesBanco = relogioBanco.getMes();
+            anoBanco = relogioBanco.getAno();
+
+            if(despesas.get(i).getStatus().equals(0) && mesBanco.equals(mesSys) && anoBanco.equals(anoSys))
+                totalDespesasNaoPagas = totalDespesasNaoPagas + despesas.get(i).getValorDesp();
+        }
+
+        TextView despesasNaoPagas = (TextView) findViewById(R.id.totalDespesaNaoPagas);
+        despesasNaoPagas.setText("R$ " + df.format(totalDespesasNaoPagas));
+
+        if(totalDespesasNaoPagas <= 0){
+            despesasNaoPagas.setTextColor(Color.parseColor("#259b24"));
+        }
+    }
+
+    private void retornarDespesasPagas() {
+
+        Despesa despesa = new Despesa();
+        List<Despesa>despesas = despesa.getLista(this);
+        RelogioHelper relogioSys = new RelogioHelper(RelogioHelper.dataHoje());
+        Integer mesSys, mesBanco,anoSys,anoBanco;
+
+        mesSys = relogioSys.getMes();
+        anoSys = relogioSys.getAno();
+
+
+        for(int i = 0; i < despesas.size(); i++){
+
+            RelogioHelper relogioBanco = new RelogioHelper(despesas.get(i).getDataVenc());
+            mesBanco = relogioBanco.getMes();
+            anoBanco = relogioBanco.getAno();
+
+            if(despesas.get(i).getStatus().equals(1) && mesBanco.equals(mesSys) && anoBanco.equals(anoSys))
+                totalDespesasPagas = totalDespesasPagas + despesas.get(i).getValorDesp();
+        }
+
+        TextView despesasPagas = (TextView) findViewById(R.id.totalDespesaPagas);
+        despesasPagas.setText("R$ " + df.format(totalDespesasPagas));
+
+    }
+
     private void retornarTotalReceitaLiquida() {
+
         TextView receitaLiquida = (TextView) findViewById(R.id.saldoAtual);
-        receitaLiquida.setText("R$ "+df.format(saldoTotal - despesaTotal));
+
+        receitaLiquida.setText("R$ "+df.format(saldoTotal - totalDespesasPagas));
+
 
         if(saldoTotal - despesaTotal < 0)
         {
@@ -64,7 +124,10 @@ public class FinancasMesActivity extends Activity {
         }
 
         TextView totalDespesa = (TextView) findViewById(R.id.totalDespesa);
+
+
         totalDespesa.setText("R$ "+df.format(despesaTotal));
+
     }
 
     private void retornarToalReceitaBruta() {
@@ -89,7 +152,11 @@ public class FinancasMesActivity extends Activity {
         }
 
         TextView saldobruto = (TextView) findViewById(R.id.saldoLiquido);
-        saldobruto.setText("R$ "+df.format(saldoTotal));
+
+        if(saldoTotal != 0)
+            saldobruto.setText("R$ "+df.format(saldoTotal));
+        else
+            saldobruto.setText("R$ 0,00");
 
     }
 
@@ -107,7 +174,7 @@ public class FinancasMesActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.julho2014) {
             return true;
         }
         return super.onOptionsItemSelected(item);

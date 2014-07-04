@@ -117,18 +117,21 @@ public class AlterarReceitaActivity extends ActionBarActivity {
                 //escreva aqui
                 ReceitaHelper helper = new ReceitaHelper(AlterarReceitaActivity.this);
                 Receita receita = null;
-                receita = helper.getReceita();
 
-                if(receita == null)
-                {
-                    Toast.makeText(AlterarReceitaActivity.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                try {
+                    receita = helper.getReceita();
+                }catch (Exception e){
+                    Toast.makeText(AlterarReceitaActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
                 }
-                else if(receita != null)
+
+
+                if(receita != null)
                 {
                     alterar(receita);
                 }
             }
         });
+
         //define um botão como negativo.
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
@@ -146,7 +149,7 @@ public class AlterarReceitaActivity extends ActionBarActivity {
     {
         if(receita.alterarReceita(receita, this) != true)
             return;
-        Toast.makeText(this,"A receita " + receita.getNomeRec() + " foi alterada com Sucesso!",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Alterado com Sucesso!",Toast.LENGTH_LONG).show();
         finish();
     }
 }

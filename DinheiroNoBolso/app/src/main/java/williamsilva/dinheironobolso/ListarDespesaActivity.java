@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import williamsilva.dinheironobolso.adapters.ListaDespesaAdapter;
 import williamsilva.dinheironobolso.helpers.RelogioHelper;
 import williamsilva.dinheironobolso.models.Despesa;
 
@@ -116,8 +117,8 @@ public class ListarDespesaActivity extends ActionBarActivity {
 
         }
 
-        int layout = android.R.layout.simple_list_item_1;
-        ArrayAdapter<Despesa> adapter = new ArrayAdapter<Despesa>(this,layout,despesasDoMes);
+
+       ListaDespesaAdapter adapter = new ListaDespesaAdapter(despesasDoMes,this);
         lista.setAdapter(adapter);
     }
 

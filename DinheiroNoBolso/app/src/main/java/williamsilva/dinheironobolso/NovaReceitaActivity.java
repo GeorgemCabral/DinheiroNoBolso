@@ -106,13 +106,16 @@ public class NovaReceitaActivity extends Activity {
 
                 //escreva aqui
                 ReceitaHelper helper = new ReceitaHelper(NovaReceitaActivity.this);
-                Receita receita = helper.getReceita();
+                Receita receita = null;
 
-                if(receita == null)
-                {
-                    Toast.makeText(NovaReceitaActivity.this,"Preencha todos os campos!",Toast.LENGTH_SHORT).show();
+                try {
+                    receita = helper.getReceita();
+                }catch (Exception e){
+                   Toast.makeText(NovaReceitaActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
                 }
-                else if(receita != null)
+
+
+                if(receita != null)
                 {
                     salvar(receita);
                 }
@@ -135,7 +138,7 @@ public class NovaReceitaActivity extends Activity {
     public void salvar(Receita receita)
     {
         if (receita.novaReceita(receita,this) == true) {
-            Toast.makeText(this, "A Receita " + receita.getNomeRec() + " foi salva com Sucesso!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Salvo com sucesso!", Toast.LENGTH_LONG).show();
             finish();
         }
     }

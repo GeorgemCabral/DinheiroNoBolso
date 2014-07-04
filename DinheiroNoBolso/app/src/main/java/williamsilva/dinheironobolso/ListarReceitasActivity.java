@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import williamsilva.dinheironobolso.R;
+import williamsilva.dinheironobolso.adapters.ListaReceitaAdapter;
 import williamsilva.dinheironobolso.helpers.RelogioHelper;
 import williamsilva.dinheironobolso.models.Receita;
 
@@ -139,8 +140,8 @@ public class ListarReceitasActivity extends ActionBarActivity  {
 
 
 
-        int layout = android.R.layout.simple_list_item_1;
-        ArrayAdapter<Receita> adapter = new ArrayAdapter<Receita>(this,layout,receitasDoMes);
+
+        ListaReceitaAdapter adapter = new ListaReceitaAdapter(receitasDoMes,this);
         lista.setAdapter(adapter);
     }
 

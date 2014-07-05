@@ -57,7 +57,7 @@ public class DespesasVencidasActivity extends ActionBarActivity {
     private void carregarLista() {
 
         Despesa despesa = new Despesa();
-        List<Despesa> despesas,despesasDoMes = new ArrayList<Despesa>();
+        List<Despesa> despesas,despesasVencidas = new ArrayList<Despesa>();
         RelogioHelper dataSys,dataBanco;
         Integer mesSys,mesBanco,anoSys,anoBanco,diaSys,diaBanco;
 
@@ -77,16 +77,17 @@ public class DespesasVencidasActivity extends ActionBarActivity {
             anoBanco = dataBanco.getAno();
             diaBanco = dataBanco.getDia();
 
-            if( diaBanco < diaSys && mesBanco < mesSys && anoBanco < anoSys && despesas.get(i).getStatus().equals(0) ||
+            if( diaBanco < diaSys && mesBanco <= mesSys && anoBanco <= anoSys && despesas.get(i).getStatus().equals(0) ||
                     diaBanco < diaSys && mesBanco.equals(mesSys) && anoBanco.equals(anoSys) && despesas.get(i).getStatus().equals(0) ||
-                    mesBanco < mesSys && anoBanco < anoSys && despesas.get(i).getStatus().equals(0) ||
-                    mesBanco < mesSys && anoBanco.equals(anoSys)&& despesas.get(i).getStatus().equals(0))
-                despesasDoMes.add(despesas.get(i));
+                    mesBanco < mesSys && anoBanco <= anoSys && despesas.get(i).getStatus().equals(0) ||
+                    mesBanco < mesSys && anoBanco.equals(anoSys)&& despesas.get(i).getStatus().equals(0) ||
+                    anoBanco < anoSys && despesas.get(i).getStatus().equals(0))
+                despesasVencidas.add(despesas.get(i));
 
         }
 
 
-        ListaDespesaAdapter adapter = new ListaDespesaAdapter(despesasDoMes,this);
+        ListaDespesaAdapter adapter = new ListaDespesaAdapter(despesasVencidas,this);
         lista.setAdapter(adapter);
     }
 }

@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="williamsilva.dinheironobolso.NovaDespesaActivity" >
+    <item android:id="@+id/listarDespesas"
+        android:title="@string/listar_despesas"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+</menu>
+<!-- From: file:/home/william/Projeto%20Android/DinheiroNoBolso/DinheiroNoBolso/app/src/main/res/menu/nova_despesa.xml -->

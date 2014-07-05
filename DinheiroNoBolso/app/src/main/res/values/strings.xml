@@ -47,5 +47,6 @@
     <string name="alterar">Alterar</string>
     <string name="detalhes">Detalhes</string>
     <string name="meus_lancamentos">Meus Lançamentos</string>
+    <string name="title_activity_despesas_pagas">Despesas Pagas</string>
 
 </resources>

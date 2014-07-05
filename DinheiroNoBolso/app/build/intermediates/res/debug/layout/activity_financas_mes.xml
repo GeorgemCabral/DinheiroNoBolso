@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#3f51b5"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/label"
+            android:textColor="#ffffff"
+            android:text="@string/financas_do_mes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            >
+            <TextView
+                android:id="@+id/LabelsaldoLiquido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="10dp"
+                android:text="Saldo Total:"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/saldoLiquido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="40dp"
+                android:text="R$ 0,00"
+                android:textColor="#259b24"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/LabelTotalDespesa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/LabelsaldoLiquido"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="10dp"
+                android:text="Total de Despesas:"
+                android:textSize="15sp"
+
+                />
+            <TextView
+                android:id="@+id/totalDespesa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/saldoLiquido"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="40dp"
+                android:text="R$ 0,00"
+                android:textColor="#d01716"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/LabelTotalDespesaNaoPagas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/LabelTotalDespesa"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="10dp"
+                android:text="Total de Despesas à Pagar:"
+                android:textSize="15sp"
+
+                />
+
+            <TextView
+                android:id="@+id/totalDespesaNaoPagas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/totalDespesa"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="40dp"
+                android:text="R$ 0,00"
+                android:textColor="#d01716"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+
+
+            <TextView
+                android:id="@+id/LabelTotalDespesaPagas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/LabelTotalDespesaNaoPagas"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="10dp"
+                android:text="Total de Despesas  Pagas:"
+                android:textSize="15sp"
+
+                />
+
+            <TextView
+                android:id="@+id/totalDespesaPagas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/totalDespesaNaoPagas"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="40dp"
+                android:text="R$ 0,00"
+                android:textColor="#f57f17"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+
+
+            <TextView
+                android:id="@+id/LabelSaldoAtual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/LabelTotalDespesaPagas"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="10dp"
+                android:text="Saldo Líquido Atual:"
+                android:textSize="15sp"
+
+                />
+
+            <TextView
+                android:id="@+id/saldoAtual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/totalDespesaPagas"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="40dp"
+                android:text="R$ 0,00"
+                android:textColor="#259b24"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView><!-- From: file:/home/william/Projeto%20Android/DinheiroNoBolso/DinheiroNoBolso/app/src/main/res/layout/activity_financas_mes.xml -->

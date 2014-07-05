@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="@string/opcoes"
+        android:icon="@drawable/ic_action_expand"
+        yourapp:showAsAction="ifRoom"
+        >
+
+        <menu >
+            <item
+                android:id="@+id/listarDespesas"
+                android:title="@string/listar_despesas"
+                />
+            <item
+                android:id="@+id/listarReceitas"
+                android:title="@string/listar_receitas"
+                />
+
+            <item
+                android:id="@+id/despesasPagas"
+                android:title="@string/despesas_pagas"
+                />
+
+            <item
+                android:id="@+id/despesasVencidas"
+                android:title="@string/despesas_vencidas"
+                />
+
+        </menu>
+
+    </item>
+
+
+</menu>
+<!-- From: file:/home/william/Projeto%20Android/DinheiroNoBolso/DinheiroNoBolso/app/src/main/res/menu/principal.xml -->

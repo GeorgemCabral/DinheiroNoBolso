@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:id="@+id/linearDespesa"
-            android:background="#E96D63"
+            android:background="#E74C3C"
             android:orientation="vertical" >
 
             <TextView

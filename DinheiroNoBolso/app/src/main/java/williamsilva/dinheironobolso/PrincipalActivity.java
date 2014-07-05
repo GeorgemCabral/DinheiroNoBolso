@@ -43,7 +43,7 @@ public class PrincipalActivity extends ActionBarActivity {
                 break;
 
             case R.id.despesasPagas:
-                teste("Despesas Pagas");
+                startActivity(new Intent(this,DespesasPagasActivity.class));
                 break;
 
             case R.id.despesasVencidas:
@@ -66,14 +66,9 @@ public class PrincipalActivity extends ActionBarActivity {
                 startActivity(new Intent(this,FinancasMesActivity.class));
                 break;
             case R.id.informacoes:
-                teste("Informações");
+
                 break;
         }
 
-    }
-
-    private void teste (String msg)
-    {
-        Toast.makeText (getApplicationContext(), msg, Toast.LENGTH_SHORT).show ();
     }
 }

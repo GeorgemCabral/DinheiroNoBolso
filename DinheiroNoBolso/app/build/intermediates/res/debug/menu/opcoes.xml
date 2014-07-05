@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="williamsilva.dinheironobolso.ListarDespesaActivity" >
+
+
+    <!--<item android:id="@+id/OPalterar"
+        android:title="@string/alterar"
+         />-->
+    <item android:id="@+id/OPexcluir"
+        android:title="@string/excluir"
+        />
+   <!-- <item android:id="@+id/OPdetalhes"
+        android:title="@string/detalhes"
+        /> -->
+</menu>
+<!-- From: file:/home/william/Projeto%20Android/DinheiroNoBolso/DinheiroNoBolso/app/src/main/res/menu/opcoes.xml -->

@@ -17,7 +17,7 @@ public class RelogioHelper {
 
     public RelogioHelper(String data) {
 
-        //ultiliza-se subString para trazer dia,mes e ano separadamente 03/02/2014
+        //ultiliza-se subString para trazer dia,mes e ano separadamente
         if(data.length() == 10) {
             dia = Integer.parseInt(data.substring(0, 2));
             mes = Integer.parseInt(data.substring(3, 5));
@@ -27,6 +27,19 @@ public class RelogioHelper {
             dia = Integer.parseInt(data.substring(0, 1));
             mes = Integer.parseInt(data.substring(2, 3));
             ano = Integer.parseInt(data.substring(4, 8));
+        }
+        else if(data.length() == 9)
+        {
+            try { // testa o primeiro bloco de código
+                dia = Integer.parseInt(data.substring(0, 2));
+                mes = Integer.parseInt(data.substring(3, 4));
+                ano = Integer.parseInt(data.substring(5, 9));
+            }catch (NumberFormatException e) // se nao funcionar o primeiro executa o catch
+            {
+                dia = Integer.parseInt(data.substring(0, 1));
+                mes = Integer.parseInt(data.substring(2, 4));
+                ano = Integer.parseInt(data.substring(5, 9));
+            }
         }
 
 

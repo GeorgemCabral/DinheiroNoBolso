@@ -10,6 +10,7 @@ import williamsilva.dinheironobolso.AlterarReceitaActivity;
 import williamsilva.dinheironobolso.NovaReceitaActivity;
 import williamsilva.dinheironobolso.R;
 import williamsilva.dinheironobolso.exceptions.CampoVazioException;
+import williamsilva.dinheironobolso.exceptions.DataIncorretaException;
 import williamsilva.dinheironobolso.exceptions.NomeComMaximoCaracteresException;
 import williamsilva.dinheironobolso.models.Receita;
 
@@ -66,7 +67,7 @@ public class ReceitaHelper {
             throw new CampoVazioException("Preencha todos os campos");
 
         nomeRec = campoNomeRec.getText().toString();
-        dataRec = campoDataRec.getText().toString();
+        validarDataReceita();
 
         if(nomeRec.length() > 15)
             throw new NomeComMaximoCaracteresException("Insira um nome com no máximo 15 caracteres");
@@ -88,6 +89,18 @@ public class ReceitaHelper {
 
 
         return receita;
+    }
+
+    private void validarDataReceita() {
+
+        RelogioHelper dataInformada = new RelogioHelper(campoDataRec.getText().toString());
+        RelogioHelper dataSys = new RelogioHelper(RelogioHelper.dataHoje());
+
+        if(dataInformada.getMes() == dataSys.getMes() && dataInformada.getAno() == dataInformada.getAno())
+            dataRec = dataInformada.toString();
+        else
+            throw new DataIncorretaException("Informe a data de recebimento deste mês de " +
+                    dataSys.returnMesName());
     }
 
     public void setReceita(Receita receita) {

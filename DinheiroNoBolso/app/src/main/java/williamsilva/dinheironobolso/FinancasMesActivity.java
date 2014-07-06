@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import williamsilva.dinheironobolso.helpers.RelogioHelper;
@@ -95,7 +96,7 @@ public class FinancasMesActivity extends ActionBarActivity {
         receitaLiquida.setText("R$ "+df.format(saldoTotal - totalDespesasPagas));
 
 
-        if(saldoTotal - despesaTotal < 0)
+        if(saldoTotal - totalDespesasPagas < 0)
         {
             receitaLiquida.setTextColor(Color.parseColor("#d01716"));
         }
@@ -164,8 +165,8 @@ public class FinancasMesActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.financas_mes, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.financas_mes,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

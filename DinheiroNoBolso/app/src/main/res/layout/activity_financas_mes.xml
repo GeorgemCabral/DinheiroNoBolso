@@ -77,7 +77,7 @@
                 android:layout_below="@+id/LabelTotalDespesa"
                 android:layout_marginTop="22dp"
                 android:layout_marginLeft="10dp"
-                android:text="Total de Despesas à Pagar:"
+                android:text="Despesas à Pagar:"
                 android:textSize="15sp"
 
                 />
@@ -104,7 +104,7 @@
                 android:layout_below="@+id/LabelTotalDespesaNaoPagas"
                 android:layout_marginTop="22dp"
                 android:layout_marginLeft="10dp"
-                android:text="Total de Despesas  Pagas:"
+                android:text="Despesas  Pagas:"
                 android:textSize="15sp"
 
                 />
